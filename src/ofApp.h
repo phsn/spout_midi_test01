@@ -2,8 +2,10 @@
 
 #include "ofMain.h"
 #include "ofxSpout2.h"
+#include "ofxMidi.h"
 
-class ofApp : public ofBaseApp{
+
+class ofApp : public ofBaseApp, public ofxMidiListener{
 
 	public:
 		void setup();
@@ -25,6 +27,13 @@ class ofApp : public ofBaseApp{
 		ofFbo fbo;
 		ofxSpout2 spout;
 
-		float fboOS; // FBO OverSampling for smooth lines
-		
+		ofPoint cPos;
+		float circleRadius;
+
+		void newMidiMessage(ofxMidiMessage& eventArgs);
+	
+		stringstream text;
+	
+		ofxMidiIn	midiIn;
+		ofxMidiMessage midiMessage;
 };
